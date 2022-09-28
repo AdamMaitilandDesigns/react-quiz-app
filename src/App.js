@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 export default function App() {
+
 	const questions = [
 		{
 			questionText: 'What is the capital of France?',
@@ -40,11 +41,20 @@ export default function App() {
 		},
 	];
 
+
+  const [lastScore, setLastScore] = useState([]);
+
   const [currentQ, setCurrentQ] = useState(0);
 
   const [showScore, setShowScore] = useState(false);
 
   const [correctA, setCorrectA] = useState(0);
+
+  const [name, setName] = useState('');
+
+  const [start, setStart] = useState(false);
+
+
 
   const HandelClick = (isCorrect) => {
 
@@ -62,31 +72,93 @@ export default function App() {
 
     }else{
 
-      setShowScore(true);
+      setShowScore(true)
+      setLastScore([{Name: name, R: correctA}, ... lastScore])
+	  console.log(lastScore);
 
     }
 
   }
 
-
   const Reset = () => {
 
     setShowScore(false)
-    setCorrectA(0);
+    setCorrectA(0)
     setCurrentQ(0)
+    setName('')
+    setStart(false)
 
   }
 
+
+  const HandelStart = (e) =>{
+
+	e.preventDefault();
+
+	setStart(true)
+
+	console.log(lastScore)
+
+  }
+
+  console.log(lastScore)
+
 	return (
+
 		<div className='app'>
-			{/* HINT: replace "false" with logic to display the 
-      score when the user has answered all the questions */}
+			
+
 			{showScore ? (
         <>
-				<div className='score-section'>You scored {correctA} out of {questions.length}</div>
-        <button onClick={Reset}>Reset</button>
+        <div className='wrap'>
+			
+				<div className='score-section'>You: scored {correctA} out of {questions.length}</div>
+
+        <h5>Last score</h5>
+
+        <ul>
+
+              {
+
+				lastScore.length !== 1 ?
+
+                lastScore.slice(1).map(i=>{
+
+                 return <li> {i.Name}: {i.R} out of {questions.length} </li>
+
+                })
+
+				: 
+
+				<p>None</p>
+
+              }
+
+        </ul>
+
+        <button className='reset' onClick={Reset}>Reset</button>
+        </div>
         </>
 			) : (
+
+       start === false ? (
+
+   
+		<div className='formWrap'>
+
+        <form onSubmit={HandelStart}>
+
+       <input type="text" placeholder="name" onChange={i=>{setName(i.target.value)}}/>
+       <button type='submit' className='reset'>Start</button>
+
+       </form>
+
+	   </div>
+
+
+
+       ) : (
+
 				<>
 					<div className='question-section'>
 						<div className='question-count'>
@@ -107,10 +179,12 @@ export default function App() {
 
                })
 
-
             }
 					</div>
 				</>
+         
+       )
+
 			)}
 		</div>
 	);

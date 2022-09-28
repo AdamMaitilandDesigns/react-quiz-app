@@ -106,3 +106,79 @@ button:focus {
 button svg {
   margin-right: 5px;
 }
+
+.reset{
+
+
+  width: 100%;
+  font-size: 16px;
+  color: #ffffff;
+  background-color: #234668;
+  border-radius: 15px;
+  display: block;
+  padding: 5px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  padding: 0.5em;
+  margin-top: 2em;
+
+
+}
+
+
+ul{
+
+  padding: 0;
+  padding-top: 0.3em;
+  text-align: center;
+  margin: 0 auto;
+}
+
+li{
+
+  display: block;
+}
+
+h5{
+
+  text-align: center;
+  padding-bottom: 0;
+}
+
+.formWrap{
+
+ display: flex;
+ justify-content: center;
+    justify-items: center;
+    align-items: center;
+    width: 70%;
+
+}
+
+form{
+
+  width: 100%;
+  text-align: center;
+  
+
+}
+
+input{
+
+  color:#234668;
+  width: 100%;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  text-align: center;
+  border-radius: 5px;
+  border: 0;
+
+}
+
+form button{
+
+ margin: auto;
+ width: 100%;
+
+}
